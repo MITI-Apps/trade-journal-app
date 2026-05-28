@@ -1,0 +1,868 @@
+/* NAV BAR STYLING */
+nav {
+  background: #0f172a; /* Clean midnight slate background */
+  padding: 14px 20px;
+  display: flex;       /* Automatically handles spacing across devices */
+  gap: 16px; 
+}
+
+nav a {
+  color: #94a3b8;      /* Clean muted gray color for links */
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: #ffffff;  
+}
+/* SMART PHONE SCALING OPTIMIZATION */
+@media (max-width: 480px) {
+  nav {
+    justify-content: space-around; /* Stretches the links out evenly on tiny phone screens */
+    padding: 12px 10px;
+  }
+  nav a {
+    font-size: 14px;   /* Shrinks the font slightly so it never clips or wraps layout boxes */
+  }
+}
+
+/* TRADE LIST STYLING */
+.actions button {
+  margin-top: 5px;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #eee;
+  transition: background 0.3s ease;
+}
+.actions button:first-child:hover {
+  background: #dddddd;
+}
+
+.actions button:last-child{
+  color: red;
+}
+.actions button:last-child:hover{
+  background: #fee2e2; /* Very light soft red */
+  color: #ef4444;      /* Vibrant red icon */
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+.trade-card {
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.trade-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.trade-card h3 {
+  margin: 0;
+  color: #333;
+}
+.trade-header-right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+/* Polishing up your time label text appearance */
+.trade-time {
+  font-size: 12px;
+  color: #64748b;      /* Clean slate dark gray letter colouring */
+  font-weight: 600;
+  background-color: #f1f5f9; /* Soft background badge backing */
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+/* ==========================================
+   ADD TRADE STYLING
+   ========================================== */
+.add-trade-container {
+  max-width: 480px;
+  width: 100%;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+}
+.add-trade-container h2 {
+  margin: 0 0 24px 0;
+  font-size: 20px;
+  color: #0f172a;
+  font-weight: 700;
+}
+.trade-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px; /* Clean spacing block between form row sections */
+}
+/* Individual field container blocks */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+/* Unified fields upgrade layout */
+.trade-form input, 
+.trade-form select, 
+.trade-form textarea {
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #f8fafc;
+  font-size: 14px;
+  color: #0f172a;
+  transition: all 0.2s ease;
+}
+
+/* Interactive focus outer halo outline rings */
+.trade-form input:focus, 
+.trade-form select:focus, 
+.trade-form textarea:focus {
+  outline: none;
+  border-color: #000000;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+.trade-form textarea {
+  min-height: 90px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Container to place buttons side-by-side */
+.form-actions-row {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 12px;
+}
+/* Stretches the save button to take up most of the space */
+.submit-trade-btn {
+  flex: 2; /* Gives the main action priority width */
+  padding: 12px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.submit-trade-btn:hover {
+  background: #1e293b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+/* Clean styling for the new Clear Button */
+.clear-trade-btn {
+  flex: 1; /* Takes up the remaining smaller space */
+  padding: 12px;
+  background: #e2e8f0; /* Muted modern light grey */
+  color: #475569;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.clear-trade-btn:hover {
+  background: #cbd5e1; /* Turns a slightly darker slate grey on cursor focus */
+  color: #1e293b;
+}
+
+
+@media (max-width: 520px) {
+  .add-trade-container {
+    margin: 16px auto;
+    border-radius: 0; /* Bleeds nicely to screen edges on micro phone display interfaces */
+    border-left: none;
+    border-right: none;
+    padding: 24px 16px;
+  }
+  .form-actions-row {
+    flex-direction: column; /* Stacks them vertically if the screen gets too tight */
+    gap: 8px;
+  }
+  .submit-trade-btn, 
+  .clear-trade-btn {
+    width: 100%; /* Stretches both to full width on phone displays */
+  }
+}
+
+/* CONTROLS (SEARCH + FILTER) */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.left-controls {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.right-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.clear-all-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #ef4444;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.clear-all-btn:hover {
+  background: #dc2626;
+}
+
+/* SEARCH INPUT */
+.search-input {
+  width: 100%;
+  max-width: 300px; 
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.clear-search {
+  padding: 8px 12px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  border-radius: 5px;  
+  font-weight: 600;
+}
+.clear-search:hover {
+  background: #ddd;
+}
+.sort-select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sort-select:hover {
+  border-color: black;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: black;
+}
+
+/* FILTER BUTTONS */
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-buttons button {
+  padding: 8px 12px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.filter-buttons button:hover {
+  background: #ddd;
+}
+.filter-buttons button.active {
+  background: #0f172a; /* Premium dark slate accent color */
+  color: #ffffff;
+}
+/* ==========================================
+   DASHBOARD UPGRADE STYLES
+   ========================================== */
+.dashboard {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.dashboard-title {
+  font-size: 22px;
+  color: #1e293b;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+/* Container placement inside Dashboard */
+.time-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+/* Reuses your exact filter button styling */
+.time-filter button {
+  padding: 6px 12px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.time-filter button:hover {
+  background: #ddd;
+}
+
+/* Active Highlight state button layout toggle link rule */
+.time-filter button.active {
+  background: #0f172a; /* Premium dark slate accent color */
+  color: #ffffff;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+
+}
+.card {
+  background: #ffffff;
+  padding: 20px 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+.card h3 {
+  margin: 0 0 8px 0;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.card p {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+  font-family: 'SF Mono', 'Courier New', monospace;
+}
+/* explicit styling of the different card colour */
+.card.win-card p { color: #16a34a; }
+.card.loss-card p { color: #dc2626; }
+.card.be-card p { color: #475569; }
+.card.winrate-card p { color: #2563eb; }
+/* Dynamic Profit/Loss Container Classes */
+.card.positive-state {
+  background: #f0fdf4; /* Very soft green layout accent block */
+  border-color: #bbf7d0;
+}
+.card.positive-state p { color: #16a34a; }
+.card.negative-state {
+  background: #fef2f2; /* Very soft red layout accent block */
+  border-color: #fecaca;
+}
+.card.negative-state p { color: #dc2626; }
+/* Wrapper frame around chart layouts */
+.chart-wrapper {
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+.chart-wrapper h3 {
+  margin: 0 0 20px 0;
+  font-size: 15px;
+  text-align: center;
+  color: #475569;
+}
+.chart-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* ==========================================
+   DASHBOARD NO DATA NOTICE BANNER
+   ========================================== */
+.no-data-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 40px 24px;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  margin-top: 10px;
+}
+
+.no-data {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #475569; /* Sleek slate gray */
+}
+
+.no-data-helper {
+  display: block;      /* Forces it to drop down to a brand new line */
+  color: #94a3b8;      /* Clean modern muted slate gray text lettering */
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 6px;     /* Leaves a balanced gap beneath the emoji paragraph */
+}
+
+/* ==========================================
+   PURE FLEXBOX INLINE EDIT FORM
+   ========================================== */
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  background: #f8fafc; /* Subtle tint for edit mode */
+  padding: 16px;
+  border-radius: 8px;
+}
+.edit-fields-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Allows inputs to drop down if they run out of space */
+  gap: 12px;
+  width: 100%;
+}
+/* Individual input wrapper blocks */
+.edit-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;             /* Tells inputs to stretch equally */
+  min-width: 140px;    /* Prevents inputs from squishing too small */
+}
+/* Forces the textarea reason box to take up 100% width on its own line */
+.edit-group.full-width {
+  flex: 1 1 100%;      /* Grow, shrink, base width 100% */
+}
+.edit-group label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+/* Form fields styling */
+.edit-group input, 
+.edit-group select, 
+.edit-group textarea {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  font-size: 14px;
+  color: #0f172a;
+  transition: all 0.2s ease;
+  width: 100%; /* Ensures they fill up their flex-group container */
+  box-sizing: border-box;
+}
+/* Focus ring decoration */
+.edit-group input:focus, 
+.edit-group select:focus, 
+.edit-group textarea:focus {
+  outline: none;
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+.edit-fields-row textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.edit-rightside button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 7px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.edit-rightside .save-btn {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.edit-rightside .save-btn:hover {
+  background: #1e293b;
+}
+.edit-rightside .cancel-btn {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.edit-rightside .cancel-btn:hover {
+  background: #cbd5e1;
+}
+
+@media (max-width: 500px) {
+  .edit-fields-row {
+    flex-direction: column; /* Stacks all fields vertically into a single row on phones */
+    gap: 12px;
+  }
+  .edit-group {
+    width: 100%; /* Spans full horizontal space */
+  }
+
+  .edit-rightside {
+    justify-content: space-between; /* Spreads buttons evenly across the screen space */
+  }
+
+  .edit-rightside button {
+    flex: 1; /* Makes Save and Cancel buttons equally wide on smartphones */
+    text-align: center;
+  }
+  .edit-fields-row textarea {
+  min-height: 120px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+/* FANCY STYLES */
+.trade-card.win {
+  border-left: 5px solid #22c55e; /* Vibrant Green */
+}
+.trade-card.loss{
+  border-left: 5px solid #ef4444; /* Vibrant Red */
+}
+.trade-card.breakeven{
+  border-left: 5px solid #64748b; /* Sleek Slate Gray */
+}
+
+/* FANCY LIST DISPLAY */
+.trade-card-body{
+  margin-top: 12px;
+}
+.trade-details-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.badge {
+  padding: 4px 12px;
+  border-radius: 50px; /* Makes it a pill shape */
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge.long {
+  background-color: #e0f2fe;
+  color: #0369a1;
+}
+.badge.short {
+  background-color: #ffedd5;
+  color: #c2410c;
+}
+.badge.result-win {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+.badge.result-loss {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+.badge.badge.result-breakeven {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+.trade-reason {
+  color: #4b5563;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+.trade-pnl-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed #e5e7eb; /* Subtle dividing rule line */
+}
+.pnl-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+}
+.pnl-value {
+  font-family: 'SF Mono', 'Courier New', monospace; /* Modern engineering look */
+  font-weight: 700;
+  font-size: 16px;
+}
+.pnl-positive {
+  color: #16a34a; /* Emerald Green */
+}
+
+.pnl-negative {
+  color: #dc2626; /* Crimson Red */
+}
+/* ==========================================
+   Toast Dialog Styling
+   ========================================== */
+
+.add-trade-container{
+  position: relative; 
+}
+/* 2. The Clean Floating Success Notification */
+.success-toast {
+  /* Positioning Rules */
+  position: absolute;   
+  top: -24px;          
+  left: 24px;
+  right: 24px;
+  
+  /* Styling & Layout Rules */
+  background-color: #10b981; 
+  color: #ffffff;            
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+
+  /* Flex Alignment Rules */
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  gap: 8px;
+
+  /* Smooth scale-up entrance animation */
+  animation: slideDown 0.2s ease-out; 
+}
+.success-toast span {
+  background: rgba(255, 255, 255, 0.2);
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 11px;
+}
+/* Subtle Pop-In Keyframes */
+@keyframes popIn {
+  from {
+    transform: translateY(10px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+/* ==========================================
+   FLOATING UNDO TOAST NOTIFICATION
+   ========================================== */
+.undo-toast {
+  position: fixed;
+  bottom: 24px;       /* Suspends it neatly above the bottom edge of the phone screen */
+  left: 24px;
+  background-color: #1e293b; /* Premium slate dark midnight theme */
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  z-index: 2000;      /* Ensures it layers on top of cards, charts, and headers */
+
+  /* Flexbox Layout */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;          /* Clean space between text and action button */
+
+  /* Simple Entry Slide Animation */
+  animation: slideUpToast 0.25s ease-out;
+}
+
+.undo-text {
+  color: #94a3b8;     /* Inactive light gray text */
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Accent Action Text Button */
+.undo-btn-action {
+  background: none;
+  border: none;
+  color: #3b82f6;     /* Bright interactive trading blue */
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s ease;
+}
+
+.undo-btn-action:hover {
+  color: #60a5fa;     /* Lightens up nicely on mouse focus hover */
+}
+
+.undo-toast.master-clear-toast {
+  border-left: 4px solid #ef4444; /* Alert Red border indicator strip */
+  background-color: #0f172a;       /* Deep slate theme matching your layout */
+}
+.undo-btn-action.alert-action {
+  color: #f97316; /* Warning Orange text layout accent color */
+}
+
+.undo-btn-action.alert-action:hover {
+  color: #fb923c;
+}
+
+/* SIMPLE SLIDE UP KEYFRAME */
+@keyframes slideUpToast {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* SMARTPHONE ADAPTATION SCREEN OFFSET */
+@media (max-width: 480px) {
+  .undo-toast {
+    left: 16px;
+    right: 16px;      /* Stretches it full width across small phone displays */
+    bottom: 16px;
+    justify-content: space-between; /* Pushes text left and undo button completely right */
+  }
+}
+/* ==========================================
+   CUSTOM REUSABLE CONFIRMATION DIALOG BOX
+   ========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.6); /* Translucent midnight tint */
+  z-index: 3000; /* Stays locked above headers, toasts, and graphs */
+  
+  /* Flexbox to center the modal perfectly on all devices */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.modal-box {
+  background: #ffffff;
+  max-width: 400px;
+  width: 100%;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.modal-box h3 {
+  margin: 0 0 12px 0;
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 700;
+}
+.modal-box p {
+  margin: 0 0 24px 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.modal-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; /* Aligns both controls to the bottom right */
+  gap: 12px;
+}
+.modal-actions button {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+/* Neutral cancel block */
+.modal-cancel-btn {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+.modal-cancel-btn:hover {
+  background-color: #e2e8f0;
+}
+/* Alert/Danger confirmation action */
+.modal-confirm-btn {
+  background-color: #dc2626; /* Warning Danger Crimson Red */
+  color: #ffffff;
+}
+.modal-confirm-btn:hover {
+  background-color: #b91c1c;
+}
+/* MOBILE PHONE FIX */
+@media (max-width: 480px) {
+  .modal-actions {
+    flex-direction: column; /* Stacks buttons vertically if phone width squishes text */
+    gap: 8px;
+  }
+  .modal-actions button {
+    width: 100%;
+    text-align: center;
+  }
+}
