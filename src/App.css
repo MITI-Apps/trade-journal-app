@@ -627,6 +627,16 @@ nav a:hover {
   margin: 10px 0;
   line-height: 1.5;
 }
+.trade-reason ul {
+  margin: 8px 0 0 0;
+  padding-left: 18px;
+}
+
+.trade-reason li {
+  margin-bottom: 4px;
+  color: #4b5563;
+  line-height: 1.4;
+}
 .trade-pnl-display {
   display: flex;
   align-items: center;

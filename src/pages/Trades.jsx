@@ -250,9 +250,14 @@ const Trades = ({
                           {trade.result}
                         </span>
                       </div>
-                      <p className="trade-reason">
-                        <strong>Reason:</strong> {trade.reason}
-                      </p>
+                      <div className="trade-reason">
+                        <strong>Reason:</strong>
+                        <ul>
+                          {trade.reason.split("\n").map((line, index)=> (
+                            <li key={index}>{line}</li>
+                          ))}
+                        </ul>
+                      </div>
                       <div className="trade-pnl-display">
                         <span className="pnl-label">PnL: </span>
                         <span className={`pnl-value ${parseFloat(trade.pnl) >= 0 ? "pnl-positive" : "pnl-negative"}`}>

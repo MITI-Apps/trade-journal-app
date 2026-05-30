@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const AddTrade = ({trades, setTrades}) => {
     const [pair, setPair] = useState("");
@@ -7,6 +9,7 @@ const AddTrade = ({trades, setTrades}) => {
     const [result, setResult] = useState("");
     const [pnl, setPnl] = useState("");
     const [showToast, setShowToast] = useState(false);
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
       e.preventDefault()
 
@@ -20,6 +23,9 @@ const AddTrade = ({trades, setTrades}) => {
         createdAt: new Date().toISOString()
       };
       setTrades([...trades, newTrade]);
+      setTimeout(() => {     // this slows down the redirect, so users can see toast
+        navigate("/");
+      }, 800);
       // console.log(newTrade);
       setShowToast(true);
 
