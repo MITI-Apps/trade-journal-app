@@ -1,19 +1,6 @@
 import { Pencil, Trash2 } from "lucide-react";
 import { useState } from "react";
-const Trades = ({
-  trades, 
-  deleteTrade, 
-  filter, 
-  setFilter, 
-  setTrades,
-  clearAllTrades,
-  search,
-  setSearch,
-  sort,
-  setSort,
-  modalBox,
-  setModalBox
-}) => {
+const Trades = ({ trades, deleteTrade, filter, setFilter, setTrades, clearAllTrades, search, setSearch, sort, setSort, modalBox, setModalBox }) => {
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({
     pair: "",
@@ -68,9 +55,20 @@ const Trades = ({
 
   const saveEdit = (id) => {
     // --- 1. NEW EDIT DATA PROTECTION ACCURACY CHECKS ---
-    const numericalPnL = parseFloat(editForm.pnl);
-
-    if (editForm.result === "Win" && numericalPnL <= 0) {
+    const numericalPnl = parseFloat(editForm.pnl);
+    
+    if (isNaN(numericalPnl)){
+        setModalBox({
+          isOpen: true,
+          title: "❌ Format Error",
+          message: "PnL value must be a valid number. Please do not include letters or symbols.",
+          onConfirm: () => {
+            setModalBox((prev) => ({...prev, isOpen: false}))
+          }
+        });
+        return; // Instantly stops the function and blocks the save
+    }
+    if (editForm.result === "Win" && numericalPnl <= 0) {
       setModalBox({
           isOpen: true,
           title: "❌ Accuracy Conflict",
@@ -82,7 +80,7 @@ const Trades = ({
       return; // Blocks the edit from saving
     }
 
-    if (editForm.result === "Loss" && numericalPnL >= 0) {
+    if (editForm.result === "Loss" && numericalPnl >= 0) {
       setModalBox({
           isOpen: true,
           title: "❌ Accuracy Conflict",
@@ -94,7 +92,7 @@ const Trades = ({
       return; // Blocks the edit from saving
     }
 
-    if (editForm.result === "Breakeven" && numericalPnL !== 0) {
+    if (editForm.result === "Breakeven" && numericalPnl !== 0) {
       setModalBox({
           isOpen: true,
           title: "❌ Accuracy Conflict",
