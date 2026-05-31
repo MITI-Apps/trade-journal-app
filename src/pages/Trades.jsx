@@ -70,11 +70,11 @@ const Trades = ({
     // --- 1. NEW EDIT DATA PROTECTION ACCURACY CHECKS ---
     const numericalPnL = parseFloat(editForm.pnl);
 
-    if (editForm.result === "Win" && numericalPnL < 0) {
+    if (editForm.result === "Win" && numericalPnL <= 0) {
       setModalBox({
           isOpen: true,
           title: "❌ Accuracy Conflict",
-          message: "A winning trade cannot have a negative PnL value.",
+          message: "A winning trade cannot have a negative or a zero PnL value.",
           onConfirm: () => {
             setModalBox((prev) => ({...prev, isOpen: false}))
           }
@@ -82,11 +82,11 @@ const Trades = ({
       return; // Blocks the edit from saving
     }
 
-    if (editForm.result === "Loss" && numericalPnL > 0) {
+    if (editForm.result === "Loss" && numericalPnL >= 0) {
       setModalBox({
           isOpen: true,
           title: "❌ Accuracy Conflict",
-          message: "A losing trade cannot have a positive PnL value.",
+          message: "A losing trade cannot have a positive or a zero PnL value.",
           onConfirm: () => {
             setModalBox((prev) => ({...prev, isOpen: false}))
           }

@@ -16,22 +16,33 @@ const AddTrade = ({trades, setTrades, modalBox, setModalBox}) => {
 
        // --- 1. NEW DATA PROTECTION ACCURACY CHECKS ---
       const numericalPnl = parseFloat(pnl);
-      if (result === "Win" && numericalPnl < 0){
+      if (isNaN(numericalPnl)){
+        setModalBox({
+          isOpen: true,
+          title: "❌ Format Error",
+          message: "PnL value must be a valid number. Please do not include letters or symbols.",
+          onConfirm: () => {
+            setModalBox((prev) => ({...prev, isOpen: false}))
+          }
+        });
+        return; // Instantly stops the function and blocks the save
+      }
+      if (result === "Win" && numericalPnl <= 0){
         setModalBox({
           isOpen: true,
           title: "❌ Accuracy Conflict",
-          message: "A winning trade cannot have a negative PnL value.",
+          message: "A winning trade cannot have a negative or a zero PnL value.",
           onConfirm: () => {
             setModalBox((prev) => ({...prev, isOpen: false}))
           }
         });
         return;// this loops away from the function and stops it from running entirely
       }
-      if (result === "Loss" && numericalPnl > 0){
+      if (result === "Loss" && numericalPnl >= 0){
         setModalBox({
           isOpen: true,
           title: "❌ Accuracy Conflict",
-          message: "A losing trade cannot have a positive PnL value.",
+          message: "A losing trade cannot have a positive or a zero PnL value.",
           onConfirm: () => {
             setModalBox((prev) => ({...prev, isOpen: false}))
           }
