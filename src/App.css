@@ -408,6 +408,14 @@ nav a:hover {
   border-color: #fecaca;
 }
 .card.negative-state p { color: #dc2626; }
+/* SYSTEM EXPECTANCY TEXT POLISHING */
+.expectancy-helper {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 6px;
+  text-transform: none; /* Keeps it normal reading case, not all-caps */
+}
 /* Wrapper frame around chart layouts */
 .chart-wrapper {
   background: #ffffff;
@@ -848,6 +856,26 @@ nav a:hover {
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s ease;
+}
+.modal-OK {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; /* Aligns both controls to the bottom right */
+  margin-top: 20px;
+}
+.modal-OK button{
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  background-color: #0f172a; /* Warning Danger Crimson Red */
+  color: #ffffff;
+}
+.modal-OK-btn:hover {
+  background-color: #1e293b;
 }
 /* Neutral cancel block */
 .modal-cancel-btn {

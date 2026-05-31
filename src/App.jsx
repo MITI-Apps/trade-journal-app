@@ -16,6 +16,13 @@ function App() {
   const [backedUpTrades, setBackedUpTrades] = useState([]);
   const [timeRange, setTimeRange] = useLocalStorage("timeRange", "all");
 
+  const [modalBox, setModalBox] = useState({
+    isOpen: false,
+    title: "",
+    message: "",
+    onConfirm: () => {}
+  })
+
   const [modalConfig, setModalConfig] = useState({
     isOpen: false,
     title: "",
@@ -73,7 +80,12 @@ function App() {
         timeRange={timeRange}
         />} />
         <Route path="/add" element={
-          <AddTrade trades={trades} setTrades={setTrades} />
+          <AddTrade 
+            trades={trades} 
+            setTrades={setTrades} 
+            modalBox={modalBox}
+            setModalBox={setModalBox}
+          />
         } />
         <Route path="/trades" element={
           <Trades trades={trades} 
@@ -86,6 +98,8 @@ function App() {
           setSearch={setSearch}
           sort={sort}
           setSort={setSort}
+          modalBox={modalBox}
+          setModalBox={setModalBox}
           />
         } />
       </Routes>
@@ -141,6 +155,21 @@ function App() {
                 Confirm
               </button>
             </div>
+          </div>
+        </div>
+      )}
+      {modalBox.isOpen && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h3>{modalBox.title}</h3>
+            <p>{modalBox.message}</p>
+            <div className="modal-OK">
+              <button 
+                onClick={modalBox.onConfirm}
+              >
+                OK
+              </button> 
+            </div>           
           </div>
         </div>
       )}

@@ -28,6 +28,16 @@ const Dashboard = ({ trades, timeRange, setTimeRange }) => {
         return acc + (isNaN(value) ? 0 : value);
     } , 0);
     const avgPnL = totalTrades > 0 ? (totalPnL / totalTrades).toFixed(2) : 0;
+
+    /**IMPLEMENTING TRADE profit-factor  CARD */
+    // 1. Separating wins from losses using your filtered list
+    const winningTrades = filteredTrades.filter((trade)=> trade.result === "Win");
+    const lossingTrades = filteredTrades.filter((trade)=> trade.result === "Loss");
+    // 2. Calculating total pnl for each (wins, loss)
+    const winningTradesPnl = winningTrades.reduce((acc, trade)=> acc + parseFloat(trade.pnl || 0), 0);
+    const lossingTradesPnl = lossingTrades.reduce((acc, trade)=> acc + Math.abs(parseFloat(trade.pnl || 0)), 0);
+   // 3. calculating profit factor
+   const profitFactor = lossingTradesPnl > 0 ? (winningTradesPnl / lossingTradesPnl).toFixed(2) : winningTradesPnl.toFixed(2);
     
     const CHART_COLORS = ["#22c55e", "#ef4444", "#64748b"];
     /** Classifying for display on pie chart */
@@ -69,38 +79,45 @@ const Dashboard = ({ trades, timeRange, setTimeRange }) => {
                 <>
                     <div className="stats-grid">
                         <div className="card total-card">
-                        <h3>Total Trades</h3>
-                        <p>{totalTrades}</p>
+                            <h3>Total Trades</h3>
+                            <p>{totalTrades}</p>
                         </div>
 
                         <div className="card win-card">
-                        <h3>Wins</h3>
-                        <p>{wins}</p>
+                            <h3>Wins</h3>
+                            <p>{wins}</p>
                         </div>
 
                         <div className="card loss-card">
-                        <h3>Losses</h3>
-                        <p>{losses}</p>
+                            <h3>Losses</h3>
+                            <p>{losses}</p>
                         </div>
 
                         <div className="card be-card">
-                        <h3>Breakeven</h3>
-                        <p>{breakeven}</p>
+                            <h3>Breakeven</h3>
+                            <p>{breakeven}</p>
                         </div>
 
                         <div className="card winrate-card">
-                        <h3>Win Rate</h3>
-                        <p>{winRate}%</p>
+                            <h3>Win Rate</h3>
+                            <p>{winRate}%</p>
                         </div>
 
-                        <div className={`card pnl-card ${totalPnL >= 0 ? "postive-state" : "negative-state"}`}>
-                        <h3>Total PnL</h3>
-                        <p>{totalPnL >= 0 ? `+${(totalPnL).toFixed(2)}%` : `-${(Math.abs(totalPnL)).toFixed(2)}%`}</p>
+                        <div className={`card pnl-card ${totalPnL >= 0 ? "positive-state" : "negative-state"}`}>
+                            <h3>Total PnL</h3>
+                            <p>{totalPnL >= 0 ? `+${(totalPnL).toFixed(2)}%` : `-${(Math.abs(totalPnL)).toFixed(2)}%`}</p>
                         </div>
 
-                        <div className={`card pnl-card ${avgPnL >= 0 ? "postive-state" : "negative-state"}`}>
-                        <h3>Avg PnL</h3>
-                        <p>{avgPnL >= 0 ? `+${avgPnL}%` : `-${Math.abs(avgPnL)}%`}</p>
+                        <div className={`card pnl-card ${avgPnL >= 0 ? "positive-state" : "negative-state"}`}>
+                            <h3>Avg PnL</h3>
+                            <p>{avgPnL >= 0 ? `+${avgPnL}%` : `-${Math.abs(avgPnL)}%`}</p>
+                        </div>
+                        <div className={`card ${parseFloat(profitFactor) >= 1.0 ? "positive-state" : "negative-state"}`}>
+                            <h3>Profit Factor</h3>
+                            <p>{profitFactor}x</p>
+                            <small className="expectancy-helper">
+                                Gross Wins divided by Gross Losses
+                            </small>
                         </div>
 
                     </div>

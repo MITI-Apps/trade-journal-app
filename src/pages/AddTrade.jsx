@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const AddTrade = ({trades, setTrades}) => {
+const AddTrade = ({trades, setTrades, modalBox, setModalBox}) => {
     const [pair, setPair] = useState("");
     const [bias, setBias] = useState("");
     const [reason, setReason] = useState("");
@@ -10,8 +10,45 @@ const AddTrade = ({trades, setTrades}) => {
     const [pnl, setPnl] = useState("");
     const [showToast, setShowToast] = useState(false);
     const navigate = useNavigate();
+
     const handleSubmit = (e) => {
       e.preventDefault()
+
+       // --- 1. NEW DATA PROTECTION ACCURACY CHECKS ---
+      const numericalPnl = parseFloat(pnl);
+      if (result === "Win" && numericalPnl < 0){
+        setModalBox({
+          isOpen: true,
+          title: "❌ Accuracy Conflict",
+          message: "A winning trade cannot have a negative PnL value.",
+          onConfirm: () => {
+            setModalBox((prev) => ({...prev, isOpen: false}))
+          }
+        });
+        return;// this loops away from the function and stops it from running entirely
+      }
+      if (result === "Loss" && numericalPnl > 0){
+        setModalBox({
+          isOpen: true,
+          title: "❌ Accuracy Conflict",
+          message: "A losing trade cannot have a positive PnL value.",
+          onConfirm: () => {
+            setModalBox((prev) => ({...prev, isOpen: false}))
+          }
+        });
+        return; // Stops the function instantly and blocks the save
+      }
+      if (result === "Breakeven" && numericalPnl !== 0){
+        setModalBox({
+          isOpen: true,
+          title: "❌ Accuracy Conflict",
+          message: "A breakeven trade PnL value must be exactly 0.",
+          onConfirm: () => {
+            setModalBox((prev) => ({...prev, isOpen: false}))
+          }
+        });
+        return; // Stops the function instantly and blocks the save
+      }
 
       const newTrade = {
         id: Date.now(),

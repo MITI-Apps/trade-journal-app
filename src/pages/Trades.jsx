@@ -10,7 +10,9 @@ const Trades = ({
   search,
   setSearch,
   sort,
-  setSort
+  setSort,
+  modalBox,
+  setModalBox
 }) => {
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({
@@ -65,6 +67,45 @@ const Trades = ({
   };
 
   const saveEdit = (id) => {
+    // --- 1. NEW EDIT DATA PROTECTION ACCURACY CHECKS ---
+    const numericalPnL = parseFloat(editForm.pnl);
+
+    if (editForm.result === "Win" && numericalPnL < 0) {
+      setModalBox({
+          isOpen: true,
+          title: "❌ Accuracy Conflict",
+          message: "A winning trade cannot have a negative PnL value.",
+          onConfirm: () => {
+            setModalBox((prev) => ({...prev, isOpen: false}))
+          }
+      });
+      return; // Blocks the edit from saving
+    }
+
+    if (editForm.result === "Loss" && numericalPnL > 0) {
+      setModalBox({
+          isOpen: true,
+          title: "❌ Accuracy Conflict",
+          message: "A losing trade cannot have a positive PnL value.",
+          onConfirm: () => {
+            setModalBox((prev) => ({...prev, isOpen: false}))
+          }
+      });
+      return; // Blocks the edit from saving
+    }
+
+    if (editForm.result === "Breakeven" && numericalPnL !== 0) {
+      setModalBox({
+          isOpen: true,
+          title: "❌ Accuracy Conflict",
+          message: "A breakeven trade PnL value must be exactly 0.",
+          onConfirm: () => {
+            setModalBox((prev) => ({...prev, isOpen: false}))
+          }
+      });
+      return;
+    }
+
     const updatedTrades = trades.map((trade) => {
       if(trade.id === id ){
         return {...trade, ...editForm};
